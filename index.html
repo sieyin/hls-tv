@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>HLS Player</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<style type="text/css" media="screen">
+			* {
+				margin: 0;
+				padding: 0;
+				border: 0;
+			}
+			html, body {
+				width: 100%;
+				height: 100%;
+			}
+			body {
+				background-color: #1d1d1d;
+			}
+			form {
+				max-width: calc(100% - 4rem);
+				margin: 2rem auto;
+				display: flex;
+				justify-content: space-between;
+			}
+			textarea, button {
+				background-color: #121212;
+				color: #f0f0f0;
+				font-family: monospace;
+				font-size: 1rem;
+				line-height: 1.6;
+				border-radius: 4px;
+				border: 1px solid #282828;
+			}
+			textarea {
+				resize: none;
+				padding: 0.2rem 0.4rem;
+				width: calc(100% - 12rem);
+				height: 10rem;
+				max-height: 24rem;
+			}
+			button {
+				width: 9rem;
+				height: 3.6rem;
+				margin-left: 1rem;
+				display: block;
+			}
+			button:hover {
+				cursor: pointer;
+				background-color: #f90;
+				color: #282828;
+			}
+			#video {
+				max-width: calc(100% - 2rem);
+				max-height: calc(100% - 2rem);
+				border-radius: 6px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+			}
+
+		</style>
+	</head>
+	<body>
+		<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+
+		<script type="text/javascript">
+			function hls(url) {
+				window.location = "?" + url;
+			}
+		</script>
+
+		<video id="video" controls muted autoplay></video>
+
+		<select id="tv">
+			<option value="https://directes-tv-int.ccma.cat/live-origin/tvi-hls/master.m3u8">TV3</option>
+			<option value="https://rtvelivestream.akamaized.net/la1_dvr.m3u8">La 1</option>
+			<option value="https://rtvelivestream.akamaized.net/rtvesec/tdp/tdp_main.m3u8">Teledeporte</option>
+			<option value="https://live-hls-v3-aje.getaj.net/AJE-V3/index.m3u8">Al Jazeera</option>
+		</select>
+
+		<button type="button" onclick="hls(document.getElementById('tv').value);">Watch</button>
+
+		<script type="text/javascript">
+			var video = document.getElementById('video');
+
+			if (window.location.search) {
+				var videoSrc = window.location.search.substring(1);
+				if (Hls.isSupported()) {
+					var hls = new Hls();
+					hls.loadSource(videoSrc);
+					hls.attachMedia(video);
+				}
+			}
+			else
+				document.getElementById('video').style.display = 'none';
+		</script>
+	</body>
+</html>
