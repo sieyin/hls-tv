@@ -1,5 +1,5 @@
-# HLS TV NEWS
+# HLS TV
 
-[HLS Player](https://github.com/sieyin/hls) for some major news TV stations.
+[HLS Player](https://github.com/sieyin/hls) with some predefined streams.
 
-You can see it at work here → [https://sieyin.github.io/hls-tv-news/](https://sieyin.github.io/hls-tv-news/)
+You can see it at work here → [https://sieyin.github.io/hls-tv/](https://sieyin.github.io/hls-tv/)
